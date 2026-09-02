@@ -6,7 +6,7 @@
 
 **S3 Upload → Lambda Policy Check → Flagged Violations Written to S3**
 
-**Relevant to:** Cloud Security · SOC Analyst · Network Segmentation · AWS (S3, Lambda, IAM, CloudWatch) · Python · Access Control & Least Privilege
+**Relevant to:** Cloud Security · SOC Analyst · Network Segmentation · AWS (S3, Lambda, IAM, CloudWatch) · Serverless Architecture · Access Control & Least Privilege
 
 **Jump to:** [Executive Summary](#executive-summary) · [Results](#results) · [Full Technical Breakdown](#full-technical-breakdown) · [References](#references)
 
