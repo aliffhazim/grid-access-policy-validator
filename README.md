@@ -28,7 +28,7 @@
 
 **The impact: caught every planted violation, missed nothing.**
 
-> 8 log entries processed, 2/2 violations correctly flagged, 0 false positives, confirmed in CloudWatch. This uses simulated data and hardcoded rules to demonstrate the pattern, it's not a production system, and I don't have hands-on OT experience.
+> 8 log entries processed, 2/2 violations correctly flagged, 0 false positives, confirmed in CloudWatch. This uses simulated data and hardcoded rules to demonstrate the pattern, it's not a production system, and I don't have hands-on OT experience yet.
 >
 > The business case is the same one Colonial Pipeline learned the expensive way: catching one unauthorized IT-to-grid connection before it reaches control systems is the difference between a blocked packet and a six-day shutdown. Detection this cheap and this fast is worth building even in simplified form.
 
@@ -91,11 +91,14 @@ for entry in log_entries:
 
 **Design decisions**
 
-**Hardcoded rules, not a database.** A production system would store rules in DynamoDB, editable without redeploying code. I hardcoded them here instead: faster to build, easier to audit, less flexible at runtime. Listed under Limitations, not hidden.
+**Hardcoded rules, not a database.**
+> A production system would store rules in DynamoDB, editable without redeploying code. I hardcoded them here instead: faster to build, easier to audit, less flexible at runtime. Listed under Limitations, not hidden.
 
-**Violations go to a separate file, not an alert.** Flagged connections land in a distinct `results/` prefix. Nothing gets modified or deleted in place. A false positive costs one extra file, not a blocked connection.
+**Violations go to a separate file, not an alert.**
+> Flagged connections land in a distinct `results/` prefix. Nothing gets modified or deleted in place. A false positive costs one extra file, not a blocked connection.
 
-**Least-privilege IAM, not a managed policy.** The Lambda role is limited to `s3:GetObject` on the input prefix and `s3:PutObject` on the output prefix. No `AmazonS3FullAccess`. This replaced the broader default role AWS creates automatically.
+**Least-privilege IAM, not a managed policy.**
+> The Lambda role is limited to `s3:GetObject` on the input prefix and `s3:PutObject` on the output prefix. No `AmazonS3FullAccess`. This replaced the broader default role AWS creates automatically.
 
 ```json
 {
@@ -147,7 +150,7 @@ git clone https://github.com/aliffhazim/grid-access-policy-validator
 **Limitations**
 
 - Rules are hardcoded, not stored externally. Faster to build, not runtime-editable.
-- Zone and protocol data is simulated, not from a real industrial network. I don't have hands-on OT experience.
+- Zone and protocol data is simulated, not from a real industrial network. I don't have hands-on OT experience yet.
 - This checks policy on uploaded logs. It doesn't intercept or block traffic in real time.
 
 ---
