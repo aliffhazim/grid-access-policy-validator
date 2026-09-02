@@ -1,0 +1,10 @@
+[
+  {"source_zone": "Corporate-IT", "dest_zone": "Grid-Monitoring-Gateway", "protocol": "HTTPS", "timestamp": "2026-09-01T09:01:00"},
+  {"source_zone": "Grid-Monitoring-Gateway", "dest_zone": "Grid-Infrastructure", "protocol": "Modbus", "timestamp": "2026-09-01T09:01:05"},
+  {"source_zone": "Corporate-IT", "dest_zone": "Corporate-IT", "protocol": "HTTP", "timestamp": "2026-09-01T09:02:00"},
+  {"source_zone": "Corporate-IT", "dest_zone": "Grid-Infrastructure", "protocol": "Modbus", "timestamp": "2026-09-01T09:03:00"},
+  {"source_zone": "Remote-VPN", "dest_zone": "Grid-Infrastructure", "protocol": "RDP", "timestamp": "2026-09-01T09:04:00"},
+  {"source_zone": "Corporate-IT", "dest_zone": "Grid-Monitoring-Gateway", "protocol": "HTTPS", "timestamp": "2026-09-01T09:05:00"},
+  {"source_zone": "Grid-Monitoring-Gateway", "dest_zone": "Grid-Infrastructure", "protocol": "Modbus", "timestamp": "2026-09-01T09:05:10"},
+  {"source_zone": "Corporate-IT", "dest_zone": "Grid-Infrastructure", "protocol": "SSH", "timestamp": "2026-09-01T09:06:00"}
+]
