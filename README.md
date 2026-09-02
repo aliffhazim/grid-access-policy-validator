@@ -67,7 +67,11 @@
 
 **Test data**
 
-No public dataset, this project uses 8 hand-written connection log entries designed to test specific cases, not a downloaded sample. Each entry has a `source_zone`, `dest_zone`, `protocol`, and `timestamp`. 6 entries represent legitimate traffic across 4 approved zone pairs. 2 are deliberately planted violations, direct `Corporate-IT → Grid-Infrastructure` connections that skip the monitoring gateway, using two different protocols (Modbus, SSH) to confirm the check flags the path, not the protocol carrying it.
+Hand-written, not a public dataset. 8 entries, each with `source_zone`, `dest_zone`, `protocol`, `timestamp`.
+
+- 6 legitimate connections across 4 approved zone pairs
+- 2 planted violations: `Corporate-IT → Grid-Infrastructure`, bypassing the gateway
+- Violations use different protocols (Modbus, SSH), on purpose, to confirm the check catches the *path*, not the protocol
 
 **The validation logic**
 
@@ -125,12 +129,6 @@ for entry in log_entries:
 | 6 | <a href="evidence/06-test-upload.png"><img src="evidence/06-test-upload.png" width="180"></a> | Test connection log uploaded to `logs/` |
 | 7 | <a href="evidence/07-violations-output.png"><img src="evidence/07-violations-output.png" width="180"></a> | Generated violations file, exact match to planted test data |
 | 8 | <a href="evidence/08-cloudwatch-logs.png"><img src="evidence/08-cloudwatch-logs.png" width="180"></a> | Processing count and execution duration, confirmed |
-
-**Challenges**
-
-- AWS defaults to `us-east-1` on bucket creation. Caught it before creating resources in the wrong region, switched to `ap-southeast-1` first.
-- The default Lambda execution role only grants basic logging permissions, no S3 access. Had to build the scoped inline IAM policy separately rather than rely on AWS's suggested defaults.
-- Console screenshots exposed the AWS account ID in a couple of views (bucket nav bar, IAM role ARN). Redacted before using them as evidence, worth checking for on any cloud-console screenshot before publishing.
 
 **Scaling this further**
 
